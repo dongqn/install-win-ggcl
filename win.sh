@@ -2,7 +2,7 @@
 
 # wget -qO- https://raw.githubusercontent.com/dongqn/install-win-ggcl/main/win.sh | sudo bash
 
-IMAGE_URL="http://149.28.130.219/W12R2DONGQN.gz"
+IMAGE_URL="http://139.180.187.62/win1.raw.gz"
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
@@ -17,7 +17,7 @@ echo "    DOWNLOADING WINDOWS IMAGE FILE..."
 echo ""
 echo ""
 
-wget -O W12R2DONGQN.gz $IMAGE_URL
+wget -O win1.raw.gz $IMAGE_URL
 
 # get all block devices, sort by SIZE to get the biggest device
 DESTINATION_DEVICE="$(lsblk -x SIZE -o NAME,SIZE | tail -n1 | cut -d ' ' -f 1)"
@@ -40,7 +40,7 @@ echo ""
 # then, use dd to copy image
 echo "Destination device is $DESTINATION_DEVICE"
 echo "Running dd command..."
-pigz -dc ./W12R2DONGQN.gz | sudo dd of="/dev/$DESTINATION_DEVICE" bs=4M
+pigz -dc ./win1.raw.gz | sudo dd of="/dev/$DESTINATION_DEVICE" bs=4M
 
 echo ""
 echo ""
